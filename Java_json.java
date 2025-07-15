@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -56,7 +54,7 @@ public class Java_json
     void PeoplestoJSON(List<Person> peoples)
     {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("people.json"));) {
+        try (FileWriter writer = new FileWriter("people.json")) {
             gson.toJson(peoples, writer);
             System.out.println("Data saved to people.json");
             writer.close();
@@ -69,16 +67,31 @@ public class Java_json
     {
         Scanner scn = new Scanner(System.in);
         List<Person> peoples = new ArrayList<>();
+        try(FileReader reader = new FileReader("people.json")) {
+            Gson gson = new Gson();
+            Person[] peopleArray = gson.fromJson(reader, Person[].class);
+            for (Person person : peopleArray) {
+                peoples.add(person);
+            }
+        } catch (IOException e) {
+            System.out.println("No existing data found, starting fresh.");
+        }
+
+
         Java_json javajson = new Java_json();
         System.out.println("Enter the number of people:");
         int n = scn.nextInt();
         while (n-- > 0) {
             System.out.println("Enter name, age, balance, interests: ");
             scn.nextLine(); // Consume the newline character left by nextInt()
+
             String name = scn.nextLine();
+
             int age = scn.nextInt();
+
             double balance = scn.nextDouble();
             scn.nextLine(); // Consume the newline character left by nextDouble()
+            
             String interests = scn.nextLine();
             Person person = new Person(name, age, balance, interests);
             peoples.add(person);

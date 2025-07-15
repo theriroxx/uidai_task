@@ -1,0 +1,20 @@
+[
+  {
+    "name": "iniya ",
+    "age": 21,
+    "balance": 12121.0,
+    "interests": "int"
+  },
+  {
+    "name": "adhithya f",
+    "age": 22,
+    "balance": 213123.0,
+    "interests": "double"
+  },
+  {
+    "name": "ewef",
+    "age": 12,
+    "balance": 3232312.0,
+    "interests": "long"
+  }
+]
