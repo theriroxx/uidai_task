@@ -81,9 +81,9 @@ public class Java_json
         Java_json javajson = new Java_json();
         System.out.println("Enter the number of people:");
         int n = scn.nextInt();
+        scn.nextLine(); // Consume the newline character left by nextInt()
         while (n-- > 0) {
             System.out.println("Enter name, age, balance, interests: ");
-            scn.nextLine(); // Consume the newline character left by nextInt()
 
             String name = scn.nextLine();
 
